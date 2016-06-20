@@ -1,0 +1,40 @@
+from Tkinter import *
+
+
+
+fenetre = Tk()
+x1=0
+x2=0
+y1=10
+y2=0
+
+can = Canvas(fenetre, bg="black", height=500, width=500)
+can.pack()
+
+
+def drawLineA(x1, coul, delta):
+	global y1,y2
+	y1=y1+delta
+	y2=y2+delta
+	can.create_line(y1,x1,y2,x2, width=1, fill=coul)
+	y1+=1
+	y2+=1
+	if(y1>500):
+		can.delete("all")
+		y1=0
+		y2=0
+	
+
+def onUnlock():
+	myo.unlock("hold")
+	print "Deverouiller"
+
+def onEMG(data, test):
+	print data[0]
+	drawLineA(data[0], "blue")
+
+#def onPoseEdge(pose, edge):
+#	print("Etat " + pose + " & :" + edge)	
+#	if (pose == 'rest') and (edge == 'on'):
+#		print("Statut : activer") 
+	
